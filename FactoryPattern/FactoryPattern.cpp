@@ -31,7 +31,7 @@ class FeedbackServiceChatbot : public Chatbot
 class ChatbotFactory
 {
 public:
-	std::shared_ptr<Chatbot> CreateChatbot(const std::string& ChatbotType)
+	static std::shared_ptr<Chatbot> CreateChatbot(const std::string& ChatbotType)
 	{
 		if (ChatbotType == "CustomerService")
 		{
@@ -41,6 +41,7 @@ public:
 		{
 			return std::make_shared<FeedbackServiceChatbot>();
 		}
+		return nullptr;
 	};
 };
 
@@ -50,15 +51,14 @@ int main()
 	std::string input;
 	std::cin >> input;
 
-	ChatbotFactory factory{};
 	std::shared_ptr<Chatbot> chatbot = nullptr;
 	if (input == "1")
 	{
-		chatbot = factory.CreateChatbot("CustomerService");
+		chatbot = ChatbotFactory::CreateChatbot("CustomerService");
 	}
 	else if (input == "2")
 	{
-		chatbot = factory.CreateChatbot("FeedbackService");
+		chatbot = ChatbotFactory::CreateChatbot("FeedbackService");
 	}
 	
 	if (chatbot)
