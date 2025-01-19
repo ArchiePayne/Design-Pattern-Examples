@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(ObserverPattern)
 add_subdirectory(FactoryPattern)
+add_subdirectory(SingletonPattern)
